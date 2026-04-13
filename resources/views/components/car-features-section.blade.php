@@ -1,13 +1,15 @@
+@props(['features' => null])
+
 @php
-    $features = [
+    $allFeatures = [
         'air_conditioning' => 'Air Conditioning',
         'power_windows' => 'Power Windows',
         'power_door_locks' => 'Power Door Locks',
         'abs' => 'ABS',
         'cruise_control' => 'Cruise Control',
-        'bluetooth_connectivity' => 'Bluetooth Connectivity',
+        'bluetooth_connectivity' => 'Bluetooth',
         'remote_start' => 'Remote Start',
-        'gps_navigation' => 'GPS Navigation System',
+        'gps_navigation' => 'GPS Navigation',
         'heater_seat' => 'Heated Seats',
         'climate_control' => 'Climate Control',
         'rear_parking_sensors' => 'Rear Parking Sensors',
@@ -15,15 +17,18 @@
     ];
 @endphp
 
-<div class="bg-white rounded-lg p-4 space-y-4">
-    <h1 class="text-xl md:text-2xl font-semibold mt-4">Car Features</h1>
+<div class="mt-4">
+    <h3 class="text-lg font-semibold mb-2">Features</h3>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        @foreach ($features as $name => $label)
-            <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox"
-                       name="features[{{ $name }}]"
-                       class="w-5 h-5 text-blue-600 border-gray-300 rounded">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        @foreach($allFeatures as $key => $label)
+            <label class="flex items-center gap-2 border p-2 rounded cursor-pointer">
+
+                <input
+                    type="checkbox"
+                    name="features[{{ $key }}]"
+                    @checked(optional($features)->$key)
+                >
 
                 <span>{{ $label }}</span>
             </label>

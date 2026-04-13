@@ -37,7 +37,7 @@
 
                     {{-- 🚗 FEATURES (COMPONENT - PERFECT POSITION) --}}
                     <x-car-features-section
-                        :selected="collect($car->features)->filter()->keys()->toArray()"
+                        :features="$car->features"
                     />
 
                     {{-- BUTTON --}}
