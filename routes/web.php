@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MakerController;
+use App\Http\Controllers\ModelController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\VerifyEmaillController;
@@ -22,6 +24,9 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 // Verify Email
 Route::get('/email/verify', [VerifyEmaillController::class , 'emailNotice'])
 ->name('verification.notice');
+
+Route::resource('makers', MakerController::class);
+Route::resource('models', ModelController::class);
 
 
 Route::get('/email/verify/{id}/{hash}', [VerifyEmaillController::class , 'emailVerify'])

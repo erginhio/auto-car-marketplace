@@ -14,14 +14,67 @@
                 </a>
             </li>
 
-            {{-- ✅ MY ACCOUNT (ONLY AUTH) --}}
+            {{-- ✅ MANAGE DROPDOWN --}}
             <li>
-                <x-dropdown>
+                <x-dropdown id="manageDropdown">
+                    Manage
+                    <svg data-lucide="settings-2" class="w-6 h-6"></svg>
+
+                    <x-slot:dropdownContent>
+                        <ul class="py-2 text-sm text-gray-700">
+
+                            <li class="px-4 py-1 text-xs text-gray-400 uppercase">
+                                Makers
+                            </li>
+
+                            <li>
+                                <a href="{{ route('makers.index') }}"
+                                   class="block px-4 py-2 hover:bg-gray-100">
+                                    All Makers
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('makers.create') }}"
+                                   class="block px-4 py-2 hover:bg-gray-100">
+                                    Add Maker
+                                </a>
+                            </li>
+
+                            <hr class="my-2">
+
+                            <li class="px-4 py-1 text-xs text-gray-400 uppercase">
+                                Models
+                            </li>
+
+                            <li>
+                                <a href="{{ route('models.index') }}"
+                                   class="block px-4 py-2 hover:bg-gray-100">
+                                    All Models
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('models.create') }}"
+                                   class="block px-4 py-2 hover:bg-gray-100">
+                                    Add Model
+                                </a>
+                            </li>
+
+                        </ul>
+                    </x-slot:dropdownContent>
+                </x-dropdown>
+            </li>
+
+            {{-- ✅ MY ACCOUNT DROPDOWN (FIXED) --}}
+            <li>
+                <x-dropdown id="myAccountDropdown">
                     My account
                     <svg data-lucide="chevron-down" class="w-6 h-6"></svg>
 
                     <x-slot:dropdownContent>
                         <ul class="py-2 text-sm text-gray-700">
+
                             @foreach ($myAccountData as $item => $value)
                                 <li>
                                     <a href="{{ route($value) }}"
@@ -30,6 +83,7 @@
                                     </a>
                                 </li>
                             @endforeach
+
                         </ul>
                     </x-slot:dropdownContent>
                 </x-dropdown>
@@ -83,7 +137,7 @@
 
                     <x-slot:dropdownContent>
                         <p class="text-sm px-4 py-2 truncate">
-                            {{ ucfirst(Auth::user()->email) }}
+                            {{ Auth::user()->email }}
                         </p>
                         <hr>
 
