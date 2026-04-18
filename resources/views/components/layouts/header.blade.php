@@ -6,7 +6,7 @@
     <div class="max-w-screen-2xl mx-auto flex items-center justify-between">
 
         <div class="flex items-center flex-shrink-0 text-white">
-            <a href="/" class="font-semibold text-xl tracking-tight max-w-40 relative group">
+            <a href="/" class="font-semibold text-xl tracking-tight max-w-20 relative group">
 
                 <img
                     src="{{ asset('/assets/images/logo.png') }}"
