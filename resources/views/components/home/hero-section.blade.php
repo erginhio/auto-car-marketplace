@@ -17,10 +17,12 @@
 
             <img
                 src="{{ asset('assets/images/car_logo.png') }}"
+                alt="Elite Auto Japan Logo"
                 class="relative w-[220px] md:w-[320px] lg:w-[400px]
+                       rounded-2xl md:rounded-3xl
+                       bg-white p-3
                        drop-shadow-[0_20px_60px_rgba(0,0,0,0.8)]
                        transition duration-700 group-hover:scale-105"
-                alt="Elite Auto Japan Logo"
             >
         </div>
 

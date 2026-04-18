@@ -41,6 +41,9 @@
         .logo img {
             max-width: 150px;
             height: auto;
+            border-radius: 16px; /* ✅ smooth rounded corners */
+            padding: 6px;        /* ✅ spacing inside */
+            background-color: #ffffff; /* ✅ clean badge look */
         }
 
         .welcome-header {
@@ -73,11 +76,6 @@
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 25px;
-            transition: background-color 0.3s ease;
-        }
-
-        .verification-button:hover {
-            background-color: #8e44ad;
         }
 
         .footer {
@@ -117,37 +115,44 @@
     </style>
 </head>
 <body>
-    <div class="email-wrapper">
-        <div class="email-container">
-            <div class="logo">
-                <img src="https://raw.githubusercontent.com/Seyla123/Laravel-cars-selling-website/refs/heads/develop/public/assets/images/logo.png" alt="AutoMarket Logo">
-            </div>
+<div class="email-wrapper">
+    <div class="email-container">
 
-            <h1 class="welcome-header">Welcome to SeylaWheels! 🚗</h1>
+        <div class="logo">
+            <img
+                src="https://raw.githubusercontent.com/Seyla123/Laravel-cars-selling-website/refs/heads/develop/public/assets/images/logo.png"
+                alt="AutoMarket Logo"
+            >
+        </div>
 
-            <p class="welcome-message">
-                Thank you for joining SeylaWheels! We're excited to have you as part of our community. To get started and ensure the security of your account, please verify your email address by clicking the button below.
-            </p>
+        <h1 class="welcome-header">Welcome to SeylaWheels! 🚗</h1>
 
-            <a href="#" class="verification-button">Verify Email Address</a>
+        <p class="welcome-message">
+            Thank you for joining SeylaWheels! We're excited to have you as part of our community.
+            To get started and ensure the security of your account, please verify your email address
+            by clicking the button below.
+        </p>
 
-            <p class="welcome-message">
-                If you didn't receive the verification email, please check your spam folder or click below to request a new one.
-                <br><br>
-                <a href="#" style="color: #3498db; text-decoration: underline;">Resend Verification Email</a>
-            </p>
+        <a href="#" class="verification-button">Verify Email Address</a>
 
-            <div class="footer">
-                <p>© 2025 SeylaWheels. All rights reserved.</p>
-                <p>If you didn't create this account, please ignore this email.</p>
+        <p class="welcome-message">
+            If you didn't receive the verification email, please check your spam folder or click below to request a new one.
+            <br><br>
+            <a href="#" style="color: #3498db; text-decoration: underline;">Resend Verification Email</a>
+        </p>
 
-                <div class="social-links">
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                </div>
+        <div class="footer">
+            <p>© 2025 SeylaWheels. All rights reserved.</p>
+            <p>If you didn't create this account, please ignore this email.</p>
+
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
             </div>
         </div>
+
     </div>
+</div>
 </body>
 </html>

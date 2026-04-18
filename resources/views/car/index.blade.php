@@ -1,5 +1,6 @@
 <x-app-layout title="My Car">
     <x-layouts.main-layout title="My Cars">
+
         <table
             class="h-full w-full text-sm text-left text-gray-500 bg-white rounded-lg border-b border-gray-200">
 
@@ -16,32 +17,38 @@
             <tbody>
             @forelse ($cars as $car)
                 <tr class="border-b">
-                    <td class="px-6 py-4">
+
+                    <!-- ✅ IMAGE LEFT -->
+                    <td class="px-6 py-6">
                         <a href="{{ route('car.show', $car) }}">
 
-                            <!-- ✅ FIXED IMAGE -->
                             <img
                                 src="{{ $car->primaryImage
                                         ? asset('/storage/'.$car->primaryImage->image_path)
                                         : asset('images/no-image.png') }}"
                                 alt="{{ $car->model->name }}"
-                                class="max-w-[100px]">
+                                class="w-30 h-20 object-cover rounded-2xl shadow-md border border-gray-200 block"
+                            >
 
                         </a>
                     </td>
 
+                    <!-- TITLE -->
                     <td class="px-6 py-4 text-center font-medium text-gray-900">
                         {{ $car->year }} - {{ $car->maker->name }} {{ $car->model->name }}
                     </td>
 
+                    <!-- DATE -->
                     <td class="px-6 py-4 text-center">
                         {{ $car->getCreatedDate() }}
                     </td>
 
+                    <!-- PUBLISHED -->
                     <td class="px-6 py-4 text-center">
                         {{ $car->published_at ? 'Yes' : 'No' }}
                     </td>
 
+                    <!-- ACTIONS -->
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end space-x-2">
 
@@ -63,6 +70,7 @@
 
                         </div>
                     </td>
+
                 </tr>
 
             @empty
@@ -74,8 +82,10 @@
                 </tr>
             @endforelse
             </tbody>
+
         </table>
 
         {{ $cars->onEachSide(1)->links('pagination') }}
+
     </x-layouts.main-layout>
 </x-app-layout>
