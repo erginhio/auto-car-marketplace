@@ -24,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination');
         View::share('year', date('Y'));
-	
-	URL::forceScheme('https');
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
