@@ -1,10 +1,11 @@
 <form action="{{ route('car.search') }}" method="GET"
+      id="carFilterForm"
       class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 w-full flex flex-col gap-6">
 
     {{-- TOP FILTERS --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
-        {{-- ✅ MAKER --}}
+        {{-- MAKER --}}
         <select id="maker" name="maker_id"
                 class="w-full h-12 px-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black">
             <option value="">Select Maker</option>
@@ -16,7 +17,7 @@
             @endforeach
         </select>
 
-        {{-- ✅ MODEL --}}
+        {{-- MODEL --}}
         <select id="model" name="model_id"
                 class="w-full h-12 px-4 rounded-lg border border-gray-300 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-black"
                 disabled>
@@ -30,7 +31,7 @@
             @endforeach
         </select>
 
-        {{-- KEEP YOUR COMPONENTS --}}
+        {{-- COMPONENTS --}}
         <x-car-type-selector :value="request('car_type_id')" />
         <x-fuel-type-selector :value="request('fuel_type_id')" />
 
@@ -87,10 +88,10 @@
         <div class="flex gap-3">
 
             {{-- RESET --}}
-            <a href="{{ route('car.search') }}"
-               class="px-4 py-2 text-gray-500 hover:text-red-500 transition">
+            <button type="button" id="resetBtn"
+                    class="px-4 py-2 text-gray-500 hover:text-red-500 transition">
                 Reset
-            </a>
+            </button>
 
             {{-- SEARCH --}}
             <button type="submit"
@@ -104,10 +105,12 @@
 
 </form>
 
-{{-- ✅ JS --}}
+{{-- JS --}}
 <script>
+    const form = document.getElementById('carFilterForm');
     const makerSelect = document.getElementById('maker');
     const modelSelect = document.getElementById('model');
+    const resetBtn = document.getElementById('resetBtn');
 
     if (makerSelect && modelSelect) {
 
@@ -139,9 +142,24 @@
             modelSelect.value = "";
         });
 
-        // 🔥 KEEP SELECTED AFTER RELOAD
+        // Keep selected after reload
         if (makerSelect.value) {
             filterModels(makerSelect.value);
         }
+
+        // ✅ RESET LOGIC
+        resetBtn.addEventListener('click', () => {
+
+            // Reset form inputs
+            form.reset();
+
+            // Reset model dropdown completely
+            modelSelect.innerHTML = '<option value="">Select Model</option>';
+            modelSelect.disabled = true;
+            modelSelect.classList.add('bg-gray-100', 'cursor-not-allowed');
+
+            // Also reset maker manually (important for UI sync)
+            makerSelect.value = "";
+        });
     }
 </script>

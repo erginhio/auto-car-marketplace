@@ -23,6 +23,7 @@
 
             {{-- sidebar --}}
             <form action="{{ route('car.search') }}" method="GET"
+                  id="filterForm"
                   class="md:max-w-[350px] w-full flex flex-col gap-6 bg-white rounded-lg p-4">
 
                 {{-- total --}}
@@ -36,7 +37,7 @@
 
                 <div class="flex flex-col gap-4">
 
-                    {{-- ✅ MAKER --}}
+                    {{-- MAKER --}}
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Maker</h1>
                         <select id="maker" name="maker_id"
@@ -51,7 +52,7 @@
                         </select>
                     </div>
 
-                    {{-- ✅ MODEL --}}
+                    {{-- MODEL --}}
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Model</h1>
                         <select id="model" name="model_id"
@@ -68,7 +69,6 @@
                         </select>
                     </div>
 
-                    {{-- car type --}}
                     <x-car-type-selector label="Car Type" :value="request('car_type_id')" />
 
                     {{-- year --}}
@@ -93,12 +93,15 @@
 
                     {{-- buttons --}}
                     <div class="flex gap-2">
-                        <a href="{{ route('car.search') }}" class="w-full">
-                            <x-button title="Reset"
-                                      customClass="w-full py-3 border-2 border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white"/>
-                        </a>
+
+                        {{-- ✅ FIXED RESET --}}
+                        <button type="button" id="resetBtn"
+                                class="w-full py-3 border-2 border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white">
+                            Reset
+                        </button>
 
                         <x-button title="Search" type="submit" />
+
                     </div>
 
                 </div>
@@ -125,7 +128,7 @@
     </main>
 </x-app-layout>
 
-{{-- ✅ JS --}}
+{{-- EXISTING JS --}}
 <script>
     const makerSelect = document.getElementById('maker');
     const modelSelect = document.getElementById('model');
@@ -158,8 +161,28 @@
         modelSelect.value = "";
     });
 
-    // 🔥 keep state after reload
     if (makerSelect.value) {
         filterModels(makerSelect.value);
     }
+</script>
+
+{{-- ✅ RESET FIX --}}
+<script>
+    const resetBtn = document.getElementById('resetBtn');
+
+    resetBtn.addEventListener('click', () => {
+
+        const form = document.getElementById('filterForm');
+
+        // reset inputs
+        form.reset();
+
+        // reset maker
+        makerSelect.value = "";
+
+        // reset model dropdown
+        modelSelect.innerHTML = '<option value="">Select Model</option>';
+        modelSelect.disabled = true;
+        modelSelect.classList.add('bg-gray-100', 'cursor-not-allowed');
+    });
 </script>
